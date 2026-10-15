@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#080d18">
+<meta name="description" content="ZHIVOX — твоё общение. Твои правила.">
+<link rel="manifest" href="manifest.webmanifest">
+<title>ZHIVOX — Messenger</title>
+<style>
+:root{color-scheme:dark;--bg:#080d18;--panel:#101828;--panel2:#151f32;--line:#26334a;--text:#edf5ff;--muted:#8fa3bd;--cyan:#4bdcff;--blue:#5b7cff;--purple:#b45cff;--good:#60e6b0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 10% 0%,#13284a 0%,transparent 38%),var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100dvh}
+button,input{font:inherit}button{cursor:pointer} .app{max-width:1180px;margin:auto;min-height:100dvh;padding:16px;display:flex;flex-direction:column;gap:14px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 4px}.brand{display:flex;align-items:center;gap:11px}.mark{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,#102b45,#21113f);border:1px solid #42617e;box-shadow:0 0 24px #2bceff25;font-size:24px;font-weight:900;color:var(--cyan);transform:skew(-4deg)}h1{font-size:21px;letter-spacing:2px;margin:0} .tag{color:var(--muted);font-size:12px}.status{font-size:12px;color:var(--good);border:1px solid #245846;padding:6px 10px;border-radius:999px}
+.layout{display:grid;grid-template-columns:320px minmax(0,1fr);gap:14px;flex:1;min-height:0}.panel{background:#0e1726ed;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 12px 36px #0003}.sidebar{display:flex;flex-direction:column;min-height:560px}.sidehead{padding:18px;border-bottom:1px solid var(--line)}.row{display:flex;align-items:center;gap:10px}.between{justify-content:space-between}.sidehead h2{font-size:18px;margin:0 0 13px}.search{width:100%;padding:11px 13px;background:#09111e;border:1px solid var(--line);border-radius:12px;color:var(--text);outline:none}.search:focus,.compose input:focus{border-color:var(--cyan)}.chatlist{overflow:auto}.chatitem{display:flex;gap:11px;padding:14px 16px;border-bottom:1px solid #202c3e;cursor:pointer}.chatitem:hover,.chatitem.active{background:#18263b}.avatar{flex:none;width:43px;height:43px;border-radius:15px;display:grid;place-items:center;font-weight:800;background:linear-gradient(135deg,#176080,#3b276d);color:white}.chatmeta{min-width:0;flex:1}.chatname{font-weight:700;display:flex;justify-content:space-between;gap:6px}.preview{color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.time{font-size:10px;color:#91a6bf;white-space:nowrap}
+.chatpanel{display:flex;flex-direction:column;min-height:560px}.chathead{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:11px}.chathead .avatar{width:39px;height:39px}.chathead h2{margin:0;font-size:16px}.online{font-size:12px;color:var(--good)}.headactions{margin-left:auto;display:flex;gap:8px}.iconbtn{background:#17243a;border:1px solid #2a3b55;color:var(--text);width:38px;height:38px;border-radius:12px}.messages{flex:1;overflow:auto;padding:22px;display:flex;flex-direction:column;gap:12px;min-height:340px;background:radial-gradient(ellipse at 80% 40%,#1c1c4022,transparent 45%)}.day{text-align:center;color:var(--muted);font-size:11px;margin-bottom:4px}.bubble{max-width:min(78%,500px);padding:11px 13px;border:1px solid #293950;background:#172337;border-radius:15px 15px 15px 5px;align-self:flex-start;overflow-wrap:anywhere}.bubble.mine{align-self:flex-end;background:linear-gradient(135deg,#16435b,#33224e);border-color:#3e5e7d;border-radius:15px 15px 5px 15px}.btime{font-size:10px;color:#a6bad0;text-align:right;margin-top:5px}.compose{display:flex;gap:9px;padding:14px;border-top:1px solid var(--line);background:#0b1321}.compose input{flex:1;min-width:0;background:#111e30;border:1px solid #2a3b55;border-radius:13px;padding:12px 14px;color:var(--text);outline:none}.send{border:0;border-radius:13px;padding:0 17px;background:linear-gradient(120deg,var(--cyan),#8b75ff);color:#07111e;font-weight:800}.foot{color:#7489a4;font-size:11px;text-align:center;padding:4px}.notice{border:1px solid #514326;background:#211c12;color:#e9d5a3;border-radius:13px;padding:11px 13px;font-size:12px}.primary{background:linear-gradient(120deg,var(--cyan),#8b75ff);color:#06101b;border:0;padding:11px 14px;border-radius:12px;font-weight:800}.secondary{background:#17243a;color:var(--text);border:1px solid #2b3b54;padding:10px 13px;border-radius:12px}.empty{margin:auto;text-align:center;color:var(--muted);padding:24px}.empty b{display:block;color:var(--text);font-size:17px;margin-bottom:6px}
+@media(max-width:720px){.app{padding:10px;gap:10px}.top{padding:5px 2px}.status{display:none}.layout{grid-template-columns:1fr}.sidebar{min-height:auto;max-height:36dvh}.chatlist{overflow:auto}.chatitem{padding:10px 12px}.chatitem .avatar{width:38px;height:38px}.chatpanel{min-height:54dvh}.messages{padding:15px;min-height:240px}.bubble{max-width:88%}.sidehead{padding:13px}.sidehead h2{margin-bottom:10px}.foot{padding-bottom:8px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand"><div class="mark">Z</div><div><h1>ZHIVOX</h1><div class="tag">Твоё общение. Твои правила.</div></div></div>
+    <div class="status">● Деморежим</div>
+  </header>
+  <div class="notice">Это локальный демонстрационный интерфейс. Сообщения хранятся только в этом браузере. Здесь пока нет реального сервера, аккаунтов или сквозного шифрования — не отправляй конфиденциальные данные.</div>
+  <main class="layout">
+    <section class="panel sidebar">
+      <div class="sidehead">
+        <div class="row between"><h2>Сообщения</h2><button class="secondary" id="newChat">＋ Новый</button></div>
+        <input class="search" id="search" placeholder="Поиск чатов…" autocomplete="off">
+      </div>
+      <div class="chatlist" id="chatlist"></div>
+    </section>
+    <section class="panel chatpanel">
+      <div class="chathead">
+        <div class="avatar" id="currentAvatar">Z</div>
+        <div><h2 id="currentName">ZHIVOX команда</h2><div class="online" id="currentStatus">Демо-чат</div></div>
+        <div class="headactions"><button class="iconbtn" title="Информация" id="infoBtn">ⓘ</button></div>
+      </div>
+      <div class="messages" id="messages" aria-live="polite"></div>
+      <form class="compose" id="compose"><input id="messageInput" placeholder="Написать сообщение…" maxlength="2000" autocomplete="off" aria-label="Текст сообщения"><button class="send" type="submit">➤</button></form>
+    </section>
+  </main>
+  <div class="foot">ZHIVOX Web Core · прототип интерфейса · версия 0.1</div>
+</div>
+<script>
+const starter = [
+ {id:"team",name:"ZHIVOX команда",avatar:"Z",status:"Демо-чат",messages:[
+  {text:"Добро пожаловать в ZHIVOX 👋",mine:false,time:"09:41"},
+  {text:"Это первый этап: интерфейс уже работает на телефоне и запоминает демонстрационные сообщения в этом браузере.",mine:false,time:"09:41"},
+  {text:"Следующий этап — подключить API-сервер и только затем внедрять проверенное сквозное шифрование.",mine:false,time:"09:42"}]},
+ {id:"ideas",name:"Идеи и функции",avatar:"✦",status:"Локальная переписка",messages:[
+  {text:"Что должно появиться первым: голосовые сообщения, группы или звонки?",mine:false,time:"Вчера"}]},
+ {id:"notes",name:"Заметки",avatar:"✎",status:"Только для этого браузера",messages:[
+  {text:"Можно сохранять идеи прямо здесь. Это не защищённое хранилище.",mine:false,time:"Пн"}]}
+];
+let chats;
+try { chats=JSON.parse(localStorage.getItem("zhivox_demo_chats")) || starter; } catch(e) { chats=starter; }
+let activeId=chats[0]?.id || "team";
+const $=id=>document.getElementById(id);
+const now=()=>new Date().toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
+function persist(){try{localStorage.setItem("zhivox_demo_chats",JSON.stringify(chats));}catch(e){}}
+function active(){return chats.find(c=>c.id===activeId)||chats[0];}
+function renderList(){
+ const q=$("search").value.toLowerCase();
+ $("chatlist").innerHTML="";
+ chats.filter(c=>(c.name+" "+(c.messages.at(-1)?.text||"")).toLowerCase().includes(q)).forEach(c=>{
+  const el=document.createElement("div");el.className="chatitem"+(c.id===activeId?" active":"");
+  const av=document.createElement("div");av.className="avatar";av.textContent=c.avatar;
+  const meta=document.createElement("div");meta.className="chatmeta";
+  const name=document.createElement("div");name.className="chatname";
+  const nm=document.createElement("span");nm.textContent=c.name;
+  const tm=document.createElement("span");tm.className="time";tm.textContent=c.messages.at(-1)?.time||"";
+  const preview=document.createElement("div");preview.className="preview";preview.textContent=(c.messages.at(-1)?.mine?"Вы: ":"")+(c.messages.at(-1)?.text||"Нет сообщений");
+  name.append(nm,tm);meta.append(name,preview);el.append(av,meta);el.onclick=()=>{activeId=c.id;render();};$("chatlist").append(el);
+ });
+}
+function renderMessages(){
+ const c=active();if(!c)return;
+ $("currentName").textContent=c.name;$("currentAvatar").textContent=c.avatar;$("currentStatus").textContent=c.status||"Демо-чат";
+ const box=$("messages");box.innerHTML="";
+ const day=document.createElement("div");day.className="day";day.textContent="История этого устройства";box.append(day);
+ c.messages.forEach(m=>{const b=document.createElement("div");b.className="bubble"+(m.mine?" mine":"");b.textContent=m.text;const t=document.createElement("div");t.className="btime";t.textContent=m.time;b.append(t);box.append(b);});
+ if(!c.messages.length){const e=document.createElement("div");e.className="empty";e.innerHTML="<b>Начни разговор</b>Напиши первое сообщение ниже.";box.append(e);}
+ box.scrollTop=box.scrollHeight;
+}
+function render(){renderList();renderMessages();persist();}
+$("compose").addEventListener("submit",e=>{e.preventDefault();const input=$("messageInput"),text=input.value.trim();if(!text)return;active().messages.push({text,mine:true,time:now()});input.value="";render();});
+$("search").addEventListener("input",renderList);
+$("newChat").addEventListener("click",()=>{const name=prompt("Название нового локального чата:");if(!name||!name.trim())return;const id="chat_"+Date.now();chats.unshift({id,name:name.trim().slice(0,50),avatar:name.trim().slice(0,1).toUpperCase(),status:"Локальный демо-чат",messages:[]});activeId=id;render();});
+$("infoBtn").addEventListener("click",()=>alert("ZHIVOX Web Core 0.1\\nДемо-интерфейс без сервера. Сообщения хранятся в localStorage браузера и не синхронизируются между устройствами."));
+if("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("./sw.js").catch(()=>{});
+render();
+</script>
+</body>
+</html>
